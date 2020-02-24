@@ -1,0 +1,36 @@
+.map-module {
+    .map {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+    }
+    .map-search {
+        background-color: $white;
+        position: absolute;
+        height: 100%;
+        width: 400px;
+        padding: 10px;
+        overflow: auto;
+        z-index: 3;
+    }
+    .map-result {
+        background-color: $white;
+        left: 400px;
+        position: absolute;
+        height: calc(100% - 20px);
+        width: 400px;
+        padding: 10px;
+        margin: 10px;
+        border-radius: $radius-element;
+        overflow: auto;
+        z-index: 4;
+        opacity: 0;
+        pointer-events: none;
+        transition: linear .05s all;
+    }
+    .map-result-show {
+        opacity: 1;
+        pointer-events: inherit;
+    }
+}

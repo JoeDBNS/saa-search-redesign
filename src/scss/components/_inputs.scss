@@ -1,0 +1,103 @@
+label,
+legend {
+    user-select: none;
+    width: 100%;
+    font-size: 0.75rem;
+    color: #646464;
+    margin-bottom: 2px;
+    border-radius: $radius-input;
+    transition: linear 0.1s box-shadow;
+
+}
+
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="time"],
+input[type="date"],
+input[type="datetime-local"] {
+    background-color: $white;
+    width: 100%;
+    padding: 3px 12px 3px 12px;
+    border: 2px solid #dbdbdb;
+    border-radius: $radius-input;
+    font-size: 1rem;
+    transition: all .2s;
+    &:focus {
+        outline: none;
+        border: 2px solid #b4b4b4;
+        box-shadow: 0 0 2px darkgrey;
+    }
+    &::placeholder {
+        color: #8a8a8a;
+    }
+}
+textarea {
+    @extend input[type="text"];
+    resize: vertical;
+    min-height: 7rem;
+}
+select {
+    @extend input[type="text"];
+    padding: 0.425rem 0.5rem;
+}
+input[type="file"] {
+    @extend input[type="text"];
+    padding: 0.3rem 0.25rem;
+}
+input[type="color"] {
+    @extend input[type="text"];
+    height: 2.5rem;
+}
+input[type="range"] {
+    width: 100%;
+    padding: 0.35rem 0;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    width: 0;
+    height: 0;
+    visibility: visible;
+    opacity: 0;
+    &:checked {
+        + label > .label-box-display > svg {
+            opacity: 1;
+        }
+    }
+    &:focus {
+        + label {
+            box-shadow: 0 0 4px $brand;
+        }
+    }
+}
+input[type="checkbox"] {
+    + label > .label-box-display {
+        border-radius: $radius-input;
+    }
+}
+input[type="radio"] {
+    + label > .label-box-display {
+        border-radius: $radius-input-radio;
+    }
+}
+.input-set {
+    margin: 14px 0;
+}
+.label-box-display {
+    background-color: $white;
+    display: inline-block;
+    border: 1px solid $gray;
+    user-select: none;
+    cursor: pointer;
+    svg {
+        opacity: 0;
+        transition: linear .05s all;
+    }
+}
+.label-text {
+    margin-left: .25rem;
+}
