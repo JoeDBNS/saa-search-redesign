@@ -12,6 +12,7 @@
         right: 0;
         max-width: calc(100% - 930px);
         margin: 10px;
+        box-shadow: 0 0 0 1px #bfbfbf;
         border-radius: $radius-element;
         z-index: 3;
     }
@@ -38,11 +39,11 @@
         position: absolute;
         height: 100%;
         width: 450px;
-        padding: 10px;
+        box-shadow: 0 0 0 1px #bfbfbf;
         overflow: auto;
         z-index: 3;
     }
-    .map-results {
+    .map-selected {
         background-color: $white;
         left: 450px;
         position: absolute;
@@ -57,7 +58,7 @@
         pointer-events: none;
         transition: linear .05s all;
     }
-    .map-results-show {
+    .map-selected-show {
         opacity: 1;
         pointer-events: inherit;
     }

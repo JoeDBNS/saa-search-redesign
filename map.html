@@ -102,8 +102,8 @@
             <div class="map-search">
                 <div class="map-search-module">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col p-0">
+                        <div class="search-controls row">
+                            <div class="col p-0 pr-2">
                                 <input type="text" id="search" name="search" placeholder="Search Facility Name..." aria-label="Search For Facilities By Name" v-model="search" v-on:keyup.enter="GetMiTalentFacilities">
                             </div>
 
@@ -113,7 +113,7 @@
                             </button>
                         </div>
 
-                        <div class="row">
+                        <div class="search-results row">
                             <div v-show="results_filtered.length === 0" class="container-fluid no-results-text">
                                 <div class="row justify-content-center">
                                     <small class="pl-3 pr-3 text-center">Use the search bar above to find facilities by name.</small>
@@ -121,8 +121,8 @@
                             </div>
 
                             <div v-for="school in results_filtered" v-show="filter_type === '' || school.type === filter_type" class="container-fluid result" @click="SelectResult(school)" @keypress.enter="SelectResult(school)" @keypress.space="SelectResult(school)" @dblclick="(school.latitude !== '') ? FlyToLocation([school.longitude, school.latitude], 10) : FlyToLocation();" v-bind:data-result-id="'marker_' + school.id" tabindex="0">
-                                <div class="row">
-                                    <div class="col">
+                                <div class="row m-0">
+                                    <div class="col p-0">
                                         <div class="result-name">{{school.name}}</div>
                                     </div>
 
@@ -134,22 +134,18 @@
                 </div>
             </div>
 
-            <div class="map-results" v-bind:class="{'map-results-show': result_selected}">
-                <div class="map-results-module">
+            <div class="map-selected" v-bind:class="{'map-selected-show': result_selected}">
+                <div class="map-selected-module">
                     <div class="container-fluid">
-                        <div class="row justify-content-end">
-                            <svg @click="result_selected = null;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                        </div>
-
                         <div class="row justify-content-center">
                             <div v-cloak class="row" v-if="result_selected">
-                                <div class="col-12">
+                                <div class="selected-details col-12">
                                     <div class="container-fluid">
-                                        <div class="row">
+                                        <div class="row p-0">
                                             <div class="col p-0">
                                                 <div class="details-name">{{result_selected.name}}</div>
                                             </div>
-                                            <div class="details-close d-block d-md-none"><svg @click="result_selected = null;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+                                            <svg @click="result_selected = null;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                         </div>
                                     </div>
 

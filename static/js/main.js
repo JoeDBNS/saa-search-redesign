@@ -11,7 +11,7 @@ window.addEventListener('load', function() {
     // LoadMapboxMap();
 
     GetUrlParams();
-    MainVue.LoadMapboxMap();
+    // MainVue.LoadMapboxMap();
 
     // InitFilterFromTypeahead();
 
