@@ -126,7 +126,7 @@
                                         <div class="result-name">{{school.name}}</div>
                                     </div>
 
-                                    <div class="result-icon-latlong" v-if="school.latitude !== ''"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                                    <div class="result-icon" v-if="school.latitude !== ''"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
                                 </div>
                             </div>
                         </div>
@@ -137,47 +137,45 @@
             <div class="map-selected" v-bind:class="{'map-selected-show': result_selected}">
                 <div class="map-selected-module">
                     <div class="container-fluid">
-                        <div class="row justify-content-center">
-                            <div v-cloak class="row" v-if="result_selected">
-                                <div class="selected-details col-12">
-                                    <div class="container-fluid">
-                                        <div class="row p-0">
-                                            <div class="col p-0">
-                                                <div class="details-name">{{result_selected.name}}</div>
-                                            </div>
-                                            <svg @click="result_selected = null;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        <div v-cloak class="row justify-content-center" v-if="result_selected">
+                            <div class="selected-details col-12 p-0">
+                                <div class="container-fluid">
+                                    <div class="row p-0">
+                                        <div class="col p-0">
+                                            <div class="details-name">{{result_selected.name}}</div>
                                         </div>
+                                        <svg class="details-close" @click="result_selected = null;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                     </div>
+                                </div>
 
-                                    <div class="details-address-street">
-                                        <a v-bind:href="'https://maps.google.com?q=' + result_selected.address + ', ' + result_selected.city + ', ' + result_selected.state + ' ' + result_selected.zipcode" target="_blank" rel="noopener noreferrer">
-                                            {{result_selected.address}}, {{result_selected.city}}, {{result_selected.state}} {{result_selected.zipcode}}
-                                        </a>
-                                    </div>
+                                <div class="details-address-street">
+                                    <a v-bind:href="'https://maps.google.com?q=' + result_selected.address + ', ' + result_selected.city + ', ' + result_selected.state + ' ' + result_selected.zipcode" target="_blank" rel="noopener noreferrer">
+                                        {{result_selected.address}}, {{result_selected.city}}, {{result_selected.state}} {{result_selected.zipcode}}
+                                    </a>
+                                </div>
 
-                                    <div id="courses-container-loading" v-show="courses_pending">
-                                        <svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><g transform="rotate(0 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(30 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(60 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(90 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(120 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(150 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(180 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(210 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(240 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(270 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(300 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(330 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate></rect></g></svg>
-                                    </div>
+                                <div id="courses-container-loading" v-show="courses_pending">
+                                    <svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><g transform="rotate(0 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(30 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(60 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(90 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(120 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(150 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(180 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(210 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(240 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(270 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(300 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(330 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate></rect></g></svg>
+                                </div>
 
-                                    <div id="courses-container" v-show="!courses_pending">
-                                        <table id="table-courses" v-show="result_selected_courses.length > 0">
-                                            <thead>
-                                                <tr>
-                                                    <th class="table-col-1">Objective</th>
-                                                    <th class="table-col-2">Program Title</th>
-                                                </tr>
-                                            </thead>
+                                <div id="courses-container" v-show="!courses_pending">
+                                    <table id="table-courses" v-show="result_selected_courses.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th class="table-col-1">Objective</th>
+                                                <th class="table-col-2">Program Title</th>
+                                            </tr>
+                                        </thead>
 
-                                            <tbody>
-                                                <tr v-for="course in result_selected_courses">
-                                                    <td class="table-col-1">{{course.educationobjective}}</td>
-                                                    <td class="table-col-2">{{course.title}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <tbody>
+                                            <tr v-for="course in result_selected_courses">
+                                                <td class="table-col-1">{{course.educationobjective}}</td>
+                                                <td class="table-col-2">{{course.title}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                                        <span v-show="result_selected_courses.length === 0">No Programs Available</span>
-                                    </div>
+                                    <span v-show="result_selected_courses.length === 0">No Programs Available</span>
                                 </div>
                             </div>
                         </div>

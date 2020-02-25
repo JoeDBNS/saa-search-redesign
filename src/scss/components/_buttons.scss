@@ -1,47 +1,31 @@
 .btn {
-    background-color: $brand-gray-100;
-    padding: 0.5rem 1.75rem;
-    margin: auto;
-    border: 1px solid $brand-third;
-    border-radius: $radius-button;
-    transition: linear 0.1s all, linear 0.025s transform;
-
-
-    padding: 3px 0;
     background-color: #4476AF;
+    padding: 3px 6px;
+    margin: auto;
     color: $white;
-    font-weight: 500;
-    border-radius: 6px;
     border: 2px solid #4476AF;
+    border-radius: $radius-button;
     outline: none;
     cursor: pointer;
     user-select: none;
     transition: all .15s;
     &:hover {
-        // background-color: $brand-third;
-        // color: $white;
-
-
         outline: none;
         background-color: $white;
         color: $brand-text-main;
         border: 2px solid #005CB9;
+        box-shadow: none;
     }
     &:focus {
-        // outline: none;
-        // box-shadow: 0 0 4px $brand;
-
-
         outline: none;
-        border: 2px solid #005CB9;
+        border: 2px solid #214064;
+        box-shadow: none;
     }
     &:active {
-        // transform: scale(0.94);
-
-
         outline: none;
         background-color: #639fe2;
         color: $white;
         border: 2px solid #005CB9;
+        box-shadow: none;
     }
 }

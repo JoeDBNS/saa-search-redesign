@@ -12,8 +12,8 @@
         right: 0;
         max-width: calc(100% - 930px);
         margin: 10px;
-        box-shadow: 0 0 0 1px #bfbfbf;
         border-radius: $radius-element;
+        box-shadow: 0 0 0 1px #bfbfbf;
         z-index: 3;
     }
     .map-filter {
@@ -52,6 +52,7 @@
         padding: 10px;
         margin: 10px;
         border-radius: $radius-element;
+        box-shadow: 0 0 0 1px #bfbfbf;
         overflow: auto;
         z-index: 4;
         opacity: 0;

@@ -77,7 +77,7 @@
 		.navbar-popup {
 			position: absolute;
 			right: 0;
-			top: 45px;
+			top: 46px;
 			background-color: $white;
 			color: $black;
 			border-width: 2px;
@@ -89,7 +89,7 @@
 			transition: linear 0.05s all;
 			pointer-events: none;
 			&:focus, &:hover {
-				top: 45px;
+				top: 46px;
 				opacity: 1;
 				pointer-events: auto;
 			}
@@ -116,7 +116,7 @@
 			}
 		}
 		.navbar-popup-show {
-			top: 45px;
+			top: 46px;
 			opacity: 1;
 			pointer-events: auto;
 		}
