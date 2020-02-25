@@ -5,6 +5,25 @@
         width: 100%;
         z-index: 2;
     }
+    .map-filter {
+        background-color: $white;
+        background-color: greenyellow;
+        position: absolute;
+        left: -20px;
+        height: 100%;
+        width: 400px;
+        padding: 10px;
+        overflow: auto;
+        z-index: 4;
+        opacity: 0;
+        pointer-events: none;
+        transition: linear .1s all;
+    }
+    .map-filter-show {
+        left: 0;
+        opacity: 1;
+        pointer-events: inherit;
+    }
     .map-search {
         background-color: $white;
         position: absolute;

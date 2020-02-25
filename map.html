@@ -73,7 +73,19 @@
 
     <main id="app-main" class="container-fluid">
         <section class="map-module row">
-            <div class="map-search col-4">
+            <div class="map-filter">
+                <div class="container-fluid">
+                    <div class="row justify-content-end">
+                        <svg @click="document.querySelector('.map-filter').classList.remove('map-filter-show');" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        map-filter
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-search">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col p-0">
@@ -110,11 +122,9 @@
                 </div>
             </div>
 
-            <div class="map-result map-result-show col-4">
-                map-result
-            </div>
+            <div class="map-result">
 
-            <div id="map-test" class="map"></div>
+            <div id="map-main" class="map"></div>
         </section>
     </main>
 
