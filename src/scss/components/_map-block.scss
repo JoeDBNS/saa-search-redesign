@@ -5,13 +5,22 @@
         width: 100%;
         z-index: 2;
     }
+    .map-info {
+        background-color: $white;
+        position: absolute;
+        top: 0;
+        right: 0;
+        max-width: calc(100% - 930px);
+        margin: 10px;
+        border-radius: $radius-element;
+        z-index: 3;
+    }
     .map-filter {
         background-color: $white;
-        background-color: greenyellow;
         position: absolute;
         left: -20px;
         height: 100%;
-        width: 400px;
+        width: 450px;
         padding: 10px;
         overflow: auto;
         z-index: 4;
@@ -28,17 +37,17 @@
         background-color: $white;
         position: absolute;
         height: 100%;
-        width: 400px;
+        width: 450px;
         padding: 10px;
         overflow: auto;
         z-index: 3;
     }
-    .map-result {
+    .map-results {
         background-color: $white;
-        left: 400px;
+        left: 450px;
         position: absolute;
         height: calc(100% - 20px);
-        width: 400px;
+        width: 450px;
         padding: 10px;
         margin: 10px;
         border-radius: $radius-element;
@@ -48,7 +57,7 @@
         pointer-events: none;
         transition: linear .05s all;
     }
-    .map-result-show {
+    .map-results-show {
         opacity: 1;
         pointer-events: inherit;
     }

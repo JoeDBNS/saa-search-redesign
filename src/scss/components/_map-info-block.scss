@@ -1,0 +1,16 @@
+.map-info-module {
+    padding: 4px 25px;
+    .info-header {
+        margin: 0;
+        font-size: 1.2rem;
+        color: $brand-text-main;
+    }
+    .info-text-help {
+        color: blue;
+        cursor: pointer;
+        user-select: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

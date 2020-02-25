@@ -11,16 +11,16 @@ window.addEventListener('load', function() {
     // LoadMapboxMap();
 
     GetUrlParams();
-    // MainVue.LoadMapboxMap();
+    MainVue.LoadMapboxMap();
 
     // InitFilterFromTypeahead();
 
-    // if (typeof MainVue.urlParams.facilityid !== 'undefined') {
-    //     MainVue.GetMiTalentFacilityById(MainVue.urlParams.facilityid);
-    // }
-    // else {
-    //     MainVue.GetMiTalentFacilities();
-    // }
+    if (typeof MainVue.urlParams.facilityid !== 'undefined') {
+        MainVue.GetMiTalentFacilityById(MainVue.urlParams.facilityid);
+    }
+    else {
+        MainVue.GetMiTalentFacilities();
+    }
 });
 
 

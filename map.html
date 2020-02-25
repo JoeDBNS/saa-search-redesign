@@ -73,56 +73,121 @@
 
     <main id="app-main" class="container-fluid">
         <section class="map-module row">
-            <div class="map-filter">
-                <div class="container-fluid">
-                    <div class="row justify-content-end">
-                        <svg @click="document.querySelector('.map-filter').classList.remove('map-filter-show');" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            <div class="map-info">
+                <div class="map-info-module">
+                    <div class="row justify-content-center">
+                        <h1 class="info-header text-center">SAA Approved Facility Search</h1>
                     </div>
 
-                    <div class="row justify-content-center">
-                        map-filter
+                    <div class="row justify-content-end">
+                        <span class="info-text-help">Click here for help</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-filter">
+                <div class="map-filter-module">
+                    <div class="container-fluid">
+                        <div class="row justify-content-end">
+                            <svg @click="document.querySelector('.map-filter').classList.remove('map-filter-show');" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            map-filter
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="map-search">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col p-0">
-                            <input id="input-preview-text" type="text" placeholder="Search.." aria-label="Search">
+                <div class="map-search-module">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col p-0">
+                                <input type="text" id="search" name="search" placeholder="Search Facility Name..." aria-label="Search For Facilities By Name" v-model="search" v-on:keyup.enter="GetMiTalentFacilities">
+                            </div>
+
+                            <button class="btn" v-bind:class="{'btn-loading': pending === true}" @click="GetMiTalentFacilities">
+                                <span v-show="pending !== true">Search</span>
+                                <span v-cloak v-show="pending === true">Loading...</span>
+                            </button>
                         </div>
 
-                        <button class="btn">Search</button>
-                    </div>
+                        <div class="row">
+                            <div v-show="results_filtered.length === 0" class="container-fluid no-results-text">
+                                <div class="row justify-content-center">
+                                    <small class="pl-3 pr-3 text-center">Use the search bar above to find facilities by name.</small>
+                                </div>
+                            </div>
 
-                    <div class="row">
-                        <ul>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                        </ul>
+                            <div v-for="school in results_filtered" v-show="filter_type === '' || school.type === filter_type" class="container-fluid result" @click="SelectResult(school)" @keypress.enter="SelectResult(school)" @keypress.space="SelectResult(school)" @dblclick="(school.latitude !== '') ? FlyToLocation([school.longitude, school.latitude], 10) : FlyToLocation();" v-bind:data-result-id="'marker_' + school.id" tabindex="0">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="result-name">{{school.name}}</div>
+                                    </div>
+
+                                    <div class="result-icon-latlong" v-if="school.latitude !== ''"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="map-result">
+            <div class="map-results" v-bind:class="{'map-results-show': result_selected}">
+                <div class="map-results-module">
+                    <div class="container-fluid">
+                        <div class="row justify-content-end">
+                            <svg @click="result_selected = null;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div v-cloak class="row" v-if="result_selected">
+                                <div class="col-12">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col p-0">
+                                                <div class="details-name">{{result_selected.name}}</div>
+                                            </div>
+                                            <div class="details-close d-block d-md-none"><svg @click="result_selected = null;" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="details-address-street">
+                                        <a v-bind:href="'https://maps.google.com?q=' + result_selected.address + ', ' + result_selected.city + ', ' + result_selected.state + ' ' + result_selected.zipcode" target="_blank" rel="noopener noreferrer">
+                                            {{result_selected.address}}, {{result_selected.city}}, {{result_selected.state}} {{result_selected.zipcode}}
+                                        </a>
+                                    </div>
+
+                                    <div id="courses-container-loading" v-show="courses_pending">
+                                        <svg width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><g transform="rotate(0 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.9166666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(30 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.8333333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(60 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.75s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(90 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.6666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(120 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5833333333333334s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(150 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.5s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(180 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.4166666666666667s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(210 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.3333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(240 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.25s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(270 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.16666666666666666s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(300 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="-0.08333333333333333s" repeatCount="indefinite"></animate></rect></g><g transform="rotate(330 50 50)"><rect x="46" y="18.5" rx="11.96" ry="4.8100000000000005" width="8" height="15" fill="#4476af"><animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animate></rect></g></svg>
+                                    </div>
+
+                                    <div id="courses-container" v-show="!courses_pending">
+                                        <table id="table-courses" v-show="result_selected_courses.length > 0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="table-col-1">Objective</th>
+                                                    <th class="table-col-2">Program Title</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr v-for="course in result_selected_courses">
+                                                    <td class="table-col-1">{{course.educationobjective}}</td>
+                                                    <td class="table-col-2">{{course.title}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <span v-show="result_selected_courses.length === 0">No Programs Available</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div id="map-main" class="map"></div>
         </section>
@@ -157,6 +222,14 @@
         </div>
     </footer>
 
+
+<!-- Vue.js -->
+    <script type="text/javascript" src="./static/js/vue.min.js"></script>
+
+<!-- Environment JS File -->
+	<script src="./environment.js"></script>
+
+<!-- Custom JS -->
     <script src="static/js/main.js"></script>
 </body>
 
