@@ -228,7 +228,7 @@ var MainVue = new Vue({
                     var el = document.createElement('div');
                     el.id = 'marker_' + marker.id;
                     el.className = 'marker';
-                    el.style.backgroundImage = 'url(\'./assets/images/map-marker-icon-sml.png\')';
+                    el.style.backgroundImage = 'url(\'./static/img/map-marker-icon-sml.png\')';
                     el.style.width = '20px';
                     el.style.height = '20px';
                     el.addEventListener('click', function () {
@@ -268,7 +268,7 @@ var MainVue = new Vue({
 
             var newSelectedMarker = document.getElementById(marker_id);
             if (newSelectedMarker !== null) {
-                newSelectedMarker.style.backgroundImage = 'url(\'./assets/images/map-marker-icon-sml-red.png\')';
+                newSelectedMarker.style.backgroundImage = 'url(\'./static/img/map-marker-icon-sml-red.png\')';
                 newSelectedMarker.setAttribute('data-marker-selected', 'true');
             }
         },
@@ -280,7 +280,7 @@ var MainVue = new Vue({
 
             var currentSelectedMarker = document.querySelector('[data-marker-selected="true"]');
             if (currentSelectedMarker !== null) {
-                currentSelectedMarker.style.backgroundImage = 'url(\'./assets/images/map-marker-icon-sml.png\')';
+                currentSelectedMarker.style.backgroundImage = 'url(\'./static/img/map-marker-icon-sml.png\')';
                 currentSelectedMarker.setAttribute('data-marker-selected', 'false');
             }
         },
@@ -292,7 +292,7 @@ var MainVue = new Vue({
             var el = document.createElement('div');
             el.id = 'marker_DistanceFromCenter';
             el.className = 'marker-distance-pin';
-            el.style.backgroundImage = 'url(\'./assets/images/map-marker-icon-sml-pin.png\')';
+            el.style.backgroundImage = 'url(\'./static/img/map-marker-icon-sml-pin.png\')';
             el.style.width = '20px';
             el.style.height = '20px';
 
