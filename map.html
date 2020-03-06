@@ -111,6 +111,11 @@
                                 <span v-show="pending !== true">Search</span>
                                 <span v-cloak v-show="pending === true">Loading...</span>
                             </button>
+
+                            <div class="col-12 p-0 p-1">
+                                <span class="controls-filter" @click="document.querySelector('.map-filter').classList.add('map-filter-show');">Filters</span>
+                                <!-- <span>Clear Filters</span> -->
+                            </div>
                         </div>
 
                         <div class="search-results row">

@@ -1,7 +1,15 @@
 .map-search-module {
     .search-controls {
-        padding: 10px;
+        background-color: #fbfcfd;
+        position: sticky;
+        top: 0;
+        padding: 10px 10px 0 10px;
         border-bottom: 1px solid #e6e6e6;
+        z-index: 1;
+        .controls-filter {
+            cursor: pointer;
+            user-select: none;
+        }
     }
     .search-results {
         .result {
@@ -22,7 +30,7 @@
             }
             .result-icon {
                 display: flex;
-                padding: 6px 4px 6px 14px;
+                padding: 3px 4px 3px 14px;
                 svg {
                     height: 14px;
                     width: 14px;
@@ -30,7 +38,8 @@
                 }
             }
             .result-name {
-                font-size: .9375rem;
+                // font-size: .9375rem;
+                font-size: .85rem;
                 font-weight: 400;
             }
         }
