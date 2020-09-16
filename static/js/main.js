@@ -13,6 +13,8 @@ window.addEventListener('load', function() {
     GetUrlParams();
     MainVue.LoadMapboxMap();
 
+    CheckForIE();
+
     // InitFilterFromTypeahead();
 
     if (typeof MainVue.urlParams.facilityid !== 'undefined') {
@@ -22,6 +24,13 @@ window.addEventListener('load', function() {
         MainVue.GetMiTalentFacilities();
     }
 });
+
+
+function CheckForIE() {
+    if (window.document.documentMode) {
+        alert('IE Browser Is Not Supported!');
+    }
+}
 
 
 function InitNavigationMenu() {
