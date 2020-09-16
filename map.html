@@ -79,7 +79,7 @@
                         <h1 class="info-header text-center">SAA Approved Facility Search</h1>
                     </div>
 
-                    <div class="row justify-content-end">
+                    <div class="row justify-content-end pt-1">
                         <span class="info-text-help">Click here for help</span>
                     </div>
                 </div>
@@ -89,11 +89,36 @@
                 <div class="map-filter-module">
                     <div class="container-fluid">
                         <div class="row justify-content-end">
-                            <svg @click="document.querySelector('.map-filter').classList.remove('map-filter-show');" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            <div class="map-filter-close-text col text-center">
+                                Filters
+                            </div>
+
+                            <div class="map-filter-close-icon" @click="document.querySelector('.map-filter').classList.remove('map-filter-show');">
+                                <svg class="feather feather-chevron-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                Apply
+                            </div>
                         </div>
 
+                        <hr>
+
                         <div class="row justify-content-center">
-                            map-filter
+                            <div class="input-set col-12">
+                                <label for="input-filter-type">Facility Type</label>
+                                <select name="input-filter-type" id="input-filter-type">
+                                    <option value="">All</option>
+                                    <option value="IHL">Institution of Higher Learning</option>
+                                    <option value="NCD">Non College Degree</option>
+                                    <option value="OJT">On-the-Job-Training</option>
+                                    <option value="APP">Apprenticeship</option>
+                                    <option value="flt">Flight</option>
+                                    <option value="LIC CERT">Certification</option>
+                                </select>
+                            </div>
+
+                            <div class="input-set col-12">
+                                <label for="input-preview-number">Number</label>
+                                <input id="input-preview-number" type="number">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,8 +137,8 @@
                                 <span v-cloak v-show="pending === true">Loading...</span>
                             </button>
 
-                            <div class="col-12 p-0 p-1">
-                                <span class="controls-filter" @click="document.querySelector('.map-filter').classList.add('map-filter-show');">Filters</span>
+                            <div class="col-12 px-0 pt-2 pb-3">
+                                <span class="controls-filter" @click="document.querySelector('.map-filter').classList.add('map-filter-show');">Open Filters</span>
                                 <!-- <span>Clear Filters</span> -->
                             </div>
                         </div>
@@ -221,6 +246,9 @@
         </div>
     </footer>
 
+
+<!-- Mock Data File -->
+    <script src="./mock_data.js"></script>
 
 <!-- Vue.js -->
     <script type="text/javascript" src="./static/js/vue.min.js"></script>
