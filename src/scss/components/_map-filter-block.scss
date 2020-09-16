@@ -1,3 +1,17 @@
 .map-filter-module {
-    //
+    .map-filter-close-text {
+        font-size: 1.1rem;
+        font-weight: 400;
+        user-select: none;
+    }
+    .map-filter-close-icon {
+        padding-right: 8px;
+        cursor: pointer;
+        user-select: none;
+
+        svg {
+            position: relative;
+            top: -2px;
+        }
+    }
 }
