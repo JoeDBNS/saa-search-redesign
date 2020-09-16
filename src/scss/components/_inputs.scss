@@ -2,8 +2,9 @@ label,
 legend {
     user-select: none;
     width: 100%;
-    font-size: 0.75rem;
-    color: #646464;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: $black;
     margin-bottom: 2px;
     border-radius: $radius-input;
     transition: linear 0.1s box-shadow;
