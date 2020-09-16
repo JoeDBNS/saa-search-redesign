@@ -4,18 +4,20 @@
         position: sticky;
         top: 0;
         padding: 10px 10px 0 10px;
-        border-bottom: 1px solid #e6e6e6;
+        border-bottom: 1px solid #c9c9c9;
         z-index: 1;
         .controls-filter {
+            color: #204269;
+            font-weight: 400;
             cursor: pointer;
             user-select: none;
         }
     }
     .search-results {
         .result {
-            padding: 6px 10px;
+            padding: 8px 11px;
             background-color: $white;
-            border-bottom: 1px solid #e6e6e6;
+            border-bottom: 1px solid #c9c9c9;
             cursor: pointer;
             user-select: none;
             &:nth-child(odd) {
