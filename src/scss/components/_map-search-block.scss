@@ -7,10 +7,11 @@
         border-bottom: 1px solid #c9c9c9;
         z-index: 1;
         .controls-filter {
-            color: #204269;
-            font-weight: 400;
-            cursor: pointer;
-            user-select: none;
+            svg {
+                position: relative;
+                top: -2px;
+                margin-right: 2px;
+            }
         }
     }
     .search-results {
@@ -30,6 +31,7 @@
             &:hover {
                 background-color: #eeeeee;
             }
+
             .result-icon {
                 display: flex;
                 padding: 3px 4px 3px 14px;
@@ -39,6 +41,7 @@
                     color: #7598ce;
                 }
             }
+
             .result-name {
                 // font-size: .9375rem;
                 font-size: .85rem;
