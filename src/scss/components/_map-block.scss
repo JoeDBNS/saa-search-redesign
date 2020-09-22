@@ -15,7 +15,7 @@
         margin: 10px;
         padding: 6px 0;
         border-radius: $radius-element;
-        box-shadow: 0 0 4px 0 #bfbfbf;
+        box-shadow: 0 0 4px 0 #6d6d6d;
         z-index: 3;
     }
     .map-filter {
@@ -41,8 +41,7 @@
         position: absolute;
         height: 100%;
         width: 400px;
-        // box-shadow: 0 0 0 1px #bfbfbf;
-        box-shadow: 1px 0 3px 0 #bfbfbf;
+        box-shadow: 1px 0 3px 0 #6d6d6d;
         overflow: auto;
         z-index: 3;
     }
@@ -55,8 +54,7 @@
         padding: 10px;
         margin: 10px;
         border-radius: $radius-element;
-        // box-shadow: 0 0 0 1px #bfbfbf;
-        box-shadow: 0 0 4px 0 #bfbfbf;
+        box-shadow: 0 0 4px 0 #6d6d6d;
         overflow: auto;
         z-index: 4;
         opacity: 0;
