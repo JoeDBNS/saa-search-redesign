@@ -8,14 +8,13 @@ if(!Array.from){Array.from=function(){var toStr=Object.prototype.toString;var is
 // OnLoad Run
 window.addEventListener('load', function() {
     InitNavigationMenu();
-    // LoadMapboxMap();
 
     GetUrlParams();
     MainVue.LoadMapboxMap();
 
     CheckForIE();
 
-    // InitFilterFromTypeahead();
+    InitFilterFromTypeahead();
 
     if (typeof MainVue.urlParams.facilityid !== 'undefined') {
         MainVue.GetMiTalentFacilityById(MainVue.urlParams.facilityid);
@@ -135,7 +134,7 @@ var MainVue = new Vue({
         show_filter: false,
         filter_type: '',
         filter_from: '',
-        filter_distance: null,
+        filter_distance: '',
         filter_distance_from: null,
         set_filter_distance_from: false,
         filter_from_typeahead_results: [],
@@ -435,11 +434,12 @@ var MainVue = new Vue({
         ClearFilter: function () {
             // document.getElementById('input-filter-from').value = '';
             MainVue.filter_type = '';
-            MainVue.filter_distance = null;
+            MainVue.filter_distance = '';
             MainVue.filter_distance_from = null;
-            MainVue.filter_from = null;
+            MainVue.filter_from = '';
             MainVue.filter_from_typeahead_results = [];
             MainVue.ClearDistanceCenterMarker();
+            MainVue.FilterResults();
         }
     },
     watch: {
@@ -449,15 +449,6 @@ var MainVue = new Vue({
             if (MainVue.results.length === 1) {
                 MainVue.SelectResult(MainVue.results[0]);
             }
-        },
-        filter_type: function () {
-            MainVue.FilterResults();
-        },
-        filter_distance: function () {
-            MainVue.FilterResults();
-        },
-        filter_distance_from: function () {
-            MainVue.FilterResults();
         }
     }
 });

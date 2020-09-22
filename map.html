@@ -93,7 +93,7 @@
                                 Filters
                             </div>
 
-                            <div class="map-filter-close-icon" @click="document.querySelector('.map-filter').classList.remove('map-filter-show');">
+                            <div class="map-filter-close-icon btn" @click="document.querySelector('.map-filter').classList.remove('map-filter-show'); FilterResults();">
                                 <svg class="feather feather-chevron-left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
                                 Apply
                             </div>
@@ -104,7 +104,7 @@
                         <div class="row justify-content-center">
                             <div class="input-set col-12">
                                 <label for="input-filter-type">Facility Type</label>
-                                <select name="input-filter-type" id="input-filter-type">
+                                <select name="input-filter-type" id="input-filter-type" v-model="filter_type">
                                     <option value="">All</option>
                                     <option value="IHL">Institution of Higher Learning</option>
                                     <option value="NCD">Non College Degree</option>
@@ -116,8 +116,20 @@
                             </div>
 
                             <div class="input-set col-12">
-                                <label for="input-preview-number">Number</label>
-                                <input id="input-preview-number" type="number">
+                                <label for="input-preview-location">Relative Location</label>
+                                <input id="input-filter-miles" class="input-field" type="number" min="0" v-model="filter_distance" aria-label="Miles" placeholder="Miles">
+
+                                <div class="filters-row-from text-center mt-2">
+                                    <input id="input-filter-from" class="input-field" type="text" v-model="filter_from" aria-label="From Address" placeholder="From Address">
+                                    
+                                    <div class="filters-row-from-results" v-show="filter_from_typeahead_results.length > 0">
+                                        <div class="from-typeahead-result" tabindex="0" v-for="result in filter_from_typeahead_results"
+                                            @click="console.log(result); filter_from = result.place_name; SetDistanceCenterMarker(result.geometry.coordinates[1], result.geometry.coordinates[0]); filter_from_typeahead_results = []; FlyToLocation([result.geometry.coordinates[0], result.geometry.coordinates[1]], 9)"
+                                            @keypress.enter="console.log(result); filter_from = result.place_name; SetDistanceCenterMarker(result.geometry.coordinates[1], result.geometry.coordinates[0]); filter_from_typeahead_results = []; FlyToLocation([result.geometry.coordinates[0], result.geometry.coordinates[1]], 9)"
+                                            @keypress.space="console.log(result); filter_from = result.place_name; SetDistanceCenterMarker(result.geometry.coordinates[1], result.geometry.coordinates[0]); filter_from_typeahead_results = []; FlyToLocation([result.geometry.coordinates[0], result.geometry.coordinates[1]], 9)"
+                                            >{{result.place_name}}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -138,8 +150,15 @@
                             </button>
 
                             <div class="col-12 px-0 pt-2 pb-3">
-                                <span class="controls-filter" @click="document.querySelector('.map-filter').classList.add('map-filter-show');">Open Filters</span>
-                                <!-- <span>Clear Filters</span> -->
+                                <span class="controls-filter btn" @click="document.querySelector('.map-filter').classList.add('map-filter-show');">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-filter"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                                    Open Filters
+                                </span>
+
+                                <span class="controls-filter btn" v-cloak v-show="filter_type !== '' || filter_distance !== '' || filter_from !== ''" @click="ClearFilter();">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                    Clear Filters
+                                </span>
                             </div>
                         </div>
 
