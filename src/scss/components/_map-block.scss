@@ -66,3 +66,55 @@
         pointer-events: inherit;
     }
 }
+
+@media handheld, only screen and (min-width: 651px) and (max-width: 980px) {
+    .map-module {
+        .map-info {
+            max-width: calc(100% - 360px);
+            min-width: calc(100% - 360px);
+        }
+        .map-selected {
+            left: 340px;
+            margin-top: 90px;
+            height: calc(100% - 100px);
+            max-width: calc(100% - 360px);
+            width: calc(100% - 360px);
+        }
+        .map-filter {
+            width: 340px;
+        }
+        .map-search {
+            width: 340px;
+        }
+    }
+}
+
+@media handheld, only screen and (min-width: 0px) and (max-width: 650px) {
+    .map-module {
+        #map-main {
+            display: none;
+        }
+        .map-info {
+            max-width: 100%;
+            min-width: 100%;
+            margin: 0;
+        }
+        .map-selected {
+            left: 0px;
+            margin-top: 10px;
+            height: calc(100% - 20px);
+            max-width: calc(100% - 20px);
+            width: calc(100% - 20px);
+        }
+        .map-filter {
+            top: 80px;
+            height: calc(100% - 80px);
+            width: 100%;
+        }
+        .map-search {
+            top: 80px;
+            height: calc(100% - 80px);
+            width: 100%;
+        }
+    }
+}

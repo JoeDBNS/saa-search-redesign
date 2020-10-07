@@ -2,16 +2,34 @@
     padding: 4px 30px;
     .info-header {
         margin: 0;
-        font-size: 1.2rem;
-        // color: $brand-text-main;
         color: #00458a;
+        .header-text {
+            font-size: 1.2rem;
+        }
     }
     .info-text-help {
+        justify-content: flex-end;
         color: blue;
         cursor: pointer;
         user-select: none;
         &:hover {
             text-decoration: underline;
+        }
+    }
+}
+
+@media handheld, only screen and (min-width: 651px) and (max-width: 980px) {
+    .map-info-module {
+        .info-text-help {
+            justify-content: center;
+        }
+    }
+}
+
+@media handheld, only screen and (min-width: 0px) and (max-width: 650px) {
+    .map-info-module {
+        .info-text-help {
+            justify-content: center;
         }
     }
 }
