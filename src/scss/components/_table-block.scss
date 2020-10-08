@@ -1,0 +1,79 @@
+.table-module {
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #4476af;
+        border-radius: 4px;
+        border: 2px solid lightgray;
+        overflow: hidden;
+        user-select: none;
+
+        thead {
+            color: white;
+
+            tr {
+                display: block;
+
+                th {
+                    background-color: #4476af;
+                    padding: 0 0 2px 8px;
+                    font-size: 0.875rem;
+                }
+            }
+            .table-col-100px {
+                width: 100px;
+            }
+        }
+        tbody {
+            font-size: 0.9375rem;
+            display: block;
+            max-height: 300px;
+            width: auto;
+            overflow: auto;
+            tr {
+                display: inline-table;
+                width: 100%;
+                &:hover {
+                    background-color: #f3f3f3;
+                    cursor: pointer;
+                }
+                td {
+                    background-color: white;
+                    padding: 4px 12px 3px 12px;
+                    border-bottom: 1px solid #dee2e6;
+                    border-right: 1px solid #dee2e6;
+                    font-size: 0.75rem;
+                    line-height: 1.25rem;
+                    &:first-child {
+                        border-radius: 2px 0 0 2px;
+                    }
+                    &:last-child {
+                        border-radius: 0 2px 2px 0;
+                    }
+                }
+                &:nth-child(even) td {
+                    background-color: #f4f7ff;
+                }
+                &:hover {
+                    outline: none;
+                    background-color: #f0f0f0;
+                }
+                &:hover td {
+                    outline: none;
+                    background-color: #f0f0f0;
+                }
+                &:focus {
+                    outline: none;
+                    background-color: #dddddd;
+                }
+                &:focus td {
+                    outline: none;
+                    background-color: #dddddd;
+                }
+            }
+            .table-col-100px {
+                width: 100px;
+            }
+        }
+    }
+}

@@ -42,7 +42,15 @@
                 position: relative;
                 top: 2px;
                 left: .5rem;
-            }
+			}
+			.brand-text-alt {
+				display: none;
+                color: $white;
+                font-weight: 400;
+                position: relative;
+                top: 2px;
+                left: .5rem;
+			}
 		}
 		.navbar-toggler {
 			padding: 0.84rem 1rem;
@@ -119,6 +127,21 @@
 			top: 46px;
 			opacity: 1;
 			pointer-events: auto;
+		}
+	}
+}
+
+@media handheld, only screen and (min-width: 0px) and (max-width: 650px) {
+    #app-header {
+		.navbar {
+			.navbar-brand {
+				.brand-text {
+					display: none;
+				}
+				.brand-text-alt {
+					display: inline-block;
+				}
+			}
 		}
 	}
 }
