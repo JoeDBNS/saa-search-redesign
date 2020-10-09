@@ -8,6 +8,7 @@ if(!Array.from){Array.from=function(){var toStr=Object.prototype.toString;var is
 // OnLoad Run
 window.addEventListener('load', function() {
     InitNavigationMenu();
+    InitMainPopup();
 
     GetUrlParams();
     MainVue.LoadMapboxMap();
@@ -68,6 +69,36 @@ function InitNavigationMenu() {
             }
         }
     });
+}
+
+
+function InitMainPopup() {
+    let main_popup = document.querySelector('.popup-module');
+    let main_popup_content = document.querySelector('.popup-content');
+
+    if (main_popup) {
+        // close popup on mousedown outside of popup
+        document.addEventListener('mousedown', function(event) {
+            if (main_popup.classList.contains('popup-module-show')) {
+                contains_popup_content = false;
+                node = event.target;
+
+                // check event.target parents for popup
+                while (node !== null) {
+                    if (node === main_popup_content) {
+                        contains_popup_content = true;
+                    }
+                    node = node.parentElement;
+                }
+
+                // if outside of menu popup, close menu popup and flip chevron
+                if (!contains_popup_content) {
+                    main_popup.classList.remove('popup-module-show');
+                }
+            }
+        });
+    }
+
 }
 
 function GetUrlParams() {
