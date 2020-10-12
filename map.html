@@ -73,21 +73,21 @@
     </header>
 
     <main id="app-main" class="container-fluid">
-        <section class="popup-module popup-module-show">
-            <div class="popup-content row justify-content-center text-center">
+        <section class="popup-module popup-module-show" v-show="popup_show">
+            <div class="popup-content row justify-content-center text-center" v-show="popup_info === 'welcome'">
                 <img src="./static/img/LEO_logo-primary-fullcolor.png" alt="State of Michigan Department of Labor and Economic Opportunity Logo" width="200px">
 
-                <p class="mt-4">Welcome to the Michigan State Approving Agency Approved Facility Search!</p>
-                <p>On this page, you can search for Approved Facilities and view the approved programs for each facility.</p>
-                <p>If you'd like to search by approved programs instead, use the <b>Program Search</b> link in the navigation <b>MENU</b> in the top right of this page to go to the program search.</p>
-                <button class="btn mt-3">Continue To Facility Search</button>
+                <p class="col-12 mt-4">Welcome to the Michigan State Approving Agency Approved Facility Search!</p>
+                <p class="col-12">On this page, you can search for Approved Facilities and view the approved programs for each facility.</p>
+                <p class="col-12">If you'd like to search by approved programs instead, use the <b>Program Search</b> link in the navigation <b>MENU</b> in the top right of this page to go to the program search.</p>
+                <button class="btn mt-3" @click="MainVue.popup_show = false;">Continue To Facility Search</button>
             </div>
 
-            <div class="popup-content row justify-content-center text-center" hidden>
+            <div class="popup-content row justify-content-center text-center" v-cloak v-show="popup_info === 'help'">
                 <h2 class="col-12">Help</h2>
 
-                <p class="mt-4">Help text will go here.</p>
-                <button class="btn mt-3">Close Help Window</button>
+                <p class="col-12 mt-4">Help text will go here.</p>
+                <button class="btn mt-3" @click="MainVue.popup_show = false;">Close</button>
             </div>
         </section>
 
@@ -98,7 +98,7 @@
                         <h1 class="header-text text-center">SAA Approved Facility Search</h1>
                     </div>
 
-                    <div class="info-text-help row pt-1">Click here for help</div>
+                    <div class="info-text-help row justify-content-center pt-1" @click="MainVue.popup_show = true; MainVue.popup_info = 'help';">Click Here For Help</div>
                 </div>
             </div>
 

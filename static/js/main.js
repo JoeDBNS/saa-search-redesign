@@ -79,7 +79,7 @@ function InitMainPopup() {
     if (main_popup) {
         // close popup on mousedown outside of popup
         document.addEventListener('mousedown', function(event) {
-            if (main_popup.classList.contains('popup-module-show')) {
+            if (MainVue.popup_show) {
                 contains_popup_content = false;
                 node = event.target;
 
@@ -93,7 +93,7 @@ function InitMainPopup() {
 
                 // if outside of menu popup, close menu popup and flip chevron
                 if (!contains_popup_content) {
-                    main_popup.classList.remove('popup-module-show');
+                    MainVue.popup_show = false;
                 }
             }
         });
@@ -178,7 +178,9 @@ var MainVue = new Vue({
         courses_pending: false,
         map: null,
         map_markers: [],
-        map_distance_marker: null
+        map_distance_marker: null,
+        popup_show: true,
+        popup_info: 'welcome'
     },
     methods: {
         GetMiTalentFacilities: function () {
