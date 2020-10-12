@@ -74,7 +74,7 @@ function InitNavigationMenu() {
 
 function InitMainPopup() {
     let main_popup = document.querySelector('.popup-module');
-    let main_popup_content = document.querySelector('.popup-content');
+    let main_popup_contents = document.querySelectorAll('.popup-content');
 
     if (main_popup) {
         // close popup on mousedown outside of popup
@@ -85,7 +85,7 @@ function InitMainPopup() {
 
                 // check event.target parents for popup
                 while (node !== null) {
-                    if (node === main_popup_content) {
+                    if (Array.from(main_popup_contents).includes(node)) {
                         contains_popup_content = true;
                     }
                     node = node.parentElement;
@@ -98,8 +98,8 @@ function InitMainPopup() {
             }
         });
     }
-
 }
+
 
 function GetUrlParams() {
 	var urlParams = new URLSearchParams(window.location.search);
@@ -111,6 +111,7 @@ function GetUrlParams() {
 	});
 	MainVue.urlParams = entriesDict;
 }
+
 
 function InitFilterFromTypeahead() {
     var delay = (function () {
