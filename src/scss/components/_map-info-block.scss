@@ -28,7 +28,13 @@
 
 @media handheld, only screen and (min-width: 0px) and (max-width: 650px) {
     .map-info-module {
+        .info-header {
+            .header-text {
+                font-size: 1rem;
+            }
+        }
         .info-text-help {
+            font-size: .9rem;
             justify-content: center;
         }
     }
