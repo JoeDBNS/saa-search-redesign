@@ -177,6 +177,8 @@ var MainVue = new Vue({
         result_selected: null,
         result_selected_courses: [],
         courses_pending: false,
+        result_selected_contacts: [],
+        contacts_pending: false,
         map: null,
         map_markers: [],
         map_distance_marker: null,
@@ -360,6 +362,7 @@ var MainVue = new Vue({
             MainVue.results_filtered.forEach(function (result) {
                 if (result.id == result_id) {
                     MainVue.result_selected = result;
+                    MainVue.LoadContacts(result_id);
                     MainVue.LoadCourses(result_id);
                 }
             });
@@ -387,6 +390,30 @@ var MainVue = new Vue({
             request.send();
 
             MainVue.courses_pending = true;
+        },
+        LoadContacts: function (facilityId) {
+            let request = new XMLHttpRequest();
+
+            var url = app_environment.SAA_Facility_Contacts.replace('__SearchVariable__', encodeURI(facilityId));
+
+            request.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    let response = JSON.parse(this.responseText);
+                    MainVue.result_selected_contacts = [];
+                    if (response.length > 0) {
+                        response.forEach(function (item) {
+                            MainVue.result_selected_contacts.push(item);
+                        });
+                    }
+
+                    MainVue.contacts_pending = false;
+                }
+            }
+
+            request.open("GET", url, true);
+            request.send();
+
+            MainVue.contacts_pending = true;
         },
         ClearSelectedResult: function () {
             MainVue.result_selected = null;

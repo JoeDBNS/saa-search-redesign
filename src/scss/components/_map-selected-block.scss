@@ -21,5 +21,21 @@
             min-height: 48px;
             margin-bottom: 10px;
         }
+        .details-contact {
+            min-height: 48px;
+            margin-bottom: 20px;
+            .contact-header {
+                margin-bottom: 6px;
+                font-size: 0.9rem;
+            }
+            .contact-info {
+                p {
+                    margin-bottom: 0;
+                    a {
+                        color: black;
+                    }
+                }
+            }
+        }
     }
 }
