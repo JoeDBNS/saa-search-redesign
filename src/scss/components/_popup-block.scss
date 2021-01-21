@@ -23,3 +23,22 @@
 .popup-module-show {
     display: flex;
 }
+
+@media handheld, only screen and (min-width: 0px) and (max-width: 650px) {
+    .popup-module {
+        align-items: self-end;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9;
+        background-color: #808080a3;
+    
+        .popup-content {
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+        }
+    }
+}
