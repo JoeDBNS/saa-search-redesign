@@ -12,6 +12,11 @@ window.addEventListener('load', function() {
     InitNavigationMenu();
     InitMainPopup();
 
+    if (!HasWelcomePopupDisplayed()) {
+        MainVue.popup_show = true;
+        WelcomePopupHasDisplayed();
+    }
+
     GetUrlParams();
 
     MainVue.LoadMapboxMap();
@@ -157,6 +162,39 @@ function InitFilterFromTypeahead() {
 }
 
 
+function HasWelcomePopupDisplayed() {
+    var wel_pop_seen = GetCookie('welcomepopupseen');
+
+    if (wel_pop_seen === 'true') {
+        return true;
+    }
+    
+    return false;
+}
+
+function WelcomePopupHasDisplayed() {
+    document.cookie = 'welcomepopupseen=true'
+}
+
+function GetCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+
+
 // Vue
 var MainVue = new Vue({
     el: '#app-main',
@@ -182,7 +220,7 @@ var MainVue = new Vue({
         map: null,
         map_markers: [],
         map_distance_marker: null,
-        popup_show: true,
+        popup_show: false,
         popup_info: 'welcome'
     },
     methods: {
