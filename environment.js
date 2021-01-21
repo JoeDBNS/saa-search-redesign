@@ -18,4 +18,5 @@ const app_environment = {
     "SAA_Program": "https://webapi.mitalent.org/SAA_API/program/0?titleContain=__SearchVariable__",
     "SAA_Program_Unique": "https://webapi.mitalent.org/SAA_API/program/unique/__SearchVariable__",
     "SAA_Program_Facilities": "https://webapi.mitalent.org/SAA_API/program/0?titleequal=__SearchVariable__",
+    "SAA_Facility_Contacts": "https://webapi.mitalent.org/SAA_API/contact/__SearchVariable__",
 }
