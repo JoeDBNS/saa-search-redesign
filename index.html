@@ -75,15 +75,16 @@
                 <small class="col-12 mt-4">GI Bill® is a registered trademark of the U.S. Department of Veterans Affairs (VA). More information about education benefits offered by VA is available at the official U.S. government website at <a href="http://www.benefits.va.gov/gibill">http://www.benefits.va.gov/gibill</a></small>
             </div>
 
-            <div class="popup-content row justify-content-center text-center" v-cloak v-show="popup_info === 'help'">
-                <h2 class="col-12">Help</h2>
+            <div class="popup-content row justify-content-center" v-cloak v-show="popup_info === 'help'">
+                <h2 class="col-12 text-center">Help</h2>
 
                 <p class="col-12 mt-4">You can search for Facilities by Facility Name, Facility Type, and Facilities within a certain radius from a particular address/city or a combination there of. </p>
 
-                <p class="col-12">Facilities matching your search criteria will be listed and also pinned on the map.</p>
+                <p class="col-12 mt-1">Facilities matching your search criteria will be listed and also pinned on the map.</p>
 
-                <p class="col-12">Selecting a Facility will display the programs approved for veteran educational benefits offered by the selected Facility.</p>
+                <p class="col-12 mt-1">Selecting a Facility will display the programs approved for veteran educational benefits offered by the selected Facility.</p>
 
+                <p class="col-12 mt-1 font-weight-bold">If your school, facility or program is not listed please feel free to have your employer or a school representative contact our office at <a href="mailto:misaa@michigan.gov">misaa@michigan.gov</a></p>
 
                 <button class="btn mt-3" @click="MainVue.popup_show = false;">Close</button>
             </div>
