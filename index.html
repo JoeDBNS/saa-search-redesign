@@ -230,7 +230,7 @@
 
                                     <div v-for="contact in result_selected_contacts" class="contact-info">
                                         <p><b>{{contact.firstname}} {{contact.lastname}}</b></p>
-                                        <p><a href="tel:{{contact.phonenumber}}">{{contact.phonenumber}}</a> - <a href="mailto:{{contact.email}}">{{contact.email}}</a></p>
+                                        <p><a v-bind:href="'tel:' + contact.phonenumber">{{contact.phonenumber}}</a> - <a v-bind:href="'mailto:' + contact.email">{{contact.email}}</a></p>
                                     </div>
 
                                     <span v-show="result_selected_contacts.length === 0">No Contacts Available</span>
